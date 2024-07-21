@@ -29,16 +29,16 @@ def test_should_success(httpx_mock: HTTPXMock):
     )
 
     # Act
-    wheater = client.fetch_weather_data(location=city, metric=expected_metric)
+    weather = client.fetch_weather_data(location=city, metric=expected_metric)
 
     # Assert
     requests = httpx_mock.get_requests()
     assert len(requests) == 1
 
-    assert wheater.city == city
-    assert wheater.country == "BR"
-    assert wheater.temperature == 25.01
-    assert wheater.metric == expected_metric.value
+    assert weather.city == city
+    assert weather.country == "BR"
+    assert weather.temperature == 25.01
+    assert weather.metric == expected_metric.value
 
 
 def test_should_unexpected_response_format(httpx_mock: HTTPXMock):

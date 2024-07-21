@@ -2,7 +2,7 @@ from dataclasses import dataclass
 
 
 @dataclass
-class Wheater:
+class Weather:
     temperature: float
     metric: str
     city: str

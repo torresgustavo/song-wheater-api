@@ -4,7 +4,7 @@ import httpx
 from domain.shared.errors.not_found_error import NotFoundError
 from extensions.log_extension import get_logger
 
-from domain.entities.weather import Wheater
+from domain.entities.weather import Weather
 from domain.interfaces.weather_api_client import WeatherApiClient
 from domain.enums.weather_unit_enum import WeatherMetricEnum
 from domain.shared.errors.unexpected_client_error import UnexpectedClientError
@@ -27,7 +27,7 @@ class OpenWeatherApiClient(WeatherApiClient):
 
         self.__client = httpx.Client(base_url=self.__base_url)
 
-    def fetch_weather_data(self, location: str, metric: WeatherMetricEnum) -> Wheater:
+    def fetch_weather_data(self, location: str, metric: WeatherMetricEnum) -> Weather:
         query_params = {
             "q": location,
             "appid": self.__secret,
@@ -43,7 +43,7 @@ class OpenWeatherApiClient(WeatherApiClient):
         data = response.json()
 
         try:
-            entitie = Wheater(
+            entitie = Weather(
                 temperature=data["main"]["temp"],
                 metric=metric.value,
                 city=data["name"],
