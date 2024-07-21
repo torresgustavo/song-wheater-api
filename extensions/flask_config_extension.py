@@ -1,8 +1,9 @@
 import os
 from flask import Flask, Response, json
+from werkzeug.exceptions import HTTPException
+
 
 from configs.config import DevelopmentConfig, TestingConfig, ProductionConfig
-from domain.shared.errors.base_error import BaseError
 from domain.shared.errors.forbidden_error import ForbiddenError
 from domain.shared.errors.not_found_error import NotFoundError
 from domain.shared.errors.to_many_requests_error import ToManyRequestsError
@@ -91,12 +92,12 @@ def __register_error_handle(app: Flask):
         return __format_exception_data_to_response(exception_data)
 
     @app.errorhandler(Exception)
-    def handle_unhandled_exception(error: Exception) -> Response:
+    def handle_http_exception(error: HTTPException) -> Response:
         exception_data = {
-            "message": str(error),
+            "message": error.description,
             "detail": None,
-            "error_code": "INTERNAL_SERVER_ERROR",
-            "status_code": 500,
+            "error_code": None,
+            "status_code": error.code,
         }
 
         return __format_exception_data_to_response(exception_data)
