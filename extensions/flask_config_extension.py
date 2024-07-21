@@ -91,7 +91,7 @@ def __register_error_handle(app: Flask):
 
         return __format_exception_data_to_response(exception_data)
 
-    @app.errorhandler(Exception)
+    @app.errorhandler(HTTPException)
     def handle_http_exception(error: HTTPException) -> Response:
         exception_data = {
             "message": error.description,
