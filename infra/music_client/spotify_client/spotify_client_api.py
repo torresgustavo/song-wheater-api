@@ -9,6 +9,7 @@ from domain.shared.errors.forbidden_error import ForbiddenError
 from domain.shared.errors.to_many_requests_error import ToManyRequestsError
 from domain.shared.errors.unauthorized_error import UnauthorizedError
 
+from domain.shared.errors.unexpected_client_error import UnexpectedClientError
 from extensions.cache_extension import cache
 
 from domain.entities.music import Music
@@ -123,6 +124,15 @@ class SpotifyClientApi(MusicApiClient):
             self.__logger.warn(message)
             formatted_exception = ToManyRequestsError(
                 resource_name=self.__name,
+                error_message=message,
+                detail={"original_error": exception.response.text},
+            )
+            return formatted_exception
+        else:
+            message = f"{self.__name} - Unexpected error {exception}"
+            self.__logger.critical(message, exc_info=True)
+            formatted_exception = UnexpectedClientError(
+                client_name=self.__name,
                 error_message=message,
                 detail={"original_error": exception.response.text},
             )
