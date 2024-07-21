@@ -38,8 +38,8 @@ def test_should_success(
     # Arrange
     city_to_search = "test"
 
-    mock_wheater_client_api = MockedWeatherApiClient()
-    mock_wheater_client_api.fetch_weather_data = Mock(
+    mock_weather_client_api = MockedWeatherApiClient()
+    mock_weather_client_api.fetch_weather_data = Mock(
         return_value=Weather(
             temperature=temperature_returned,
             city=city_to_search,
@@ -53,7 +53,7 @@ def test_should_success(
     )
 
     service = GetMusicByCityWeatherService(
-        weather_client_api=mock_wheater_client_api,
+        weather_client_api=mock_weather_client_api,
         music_client_api=mock_music_client_api,
     )
 
@@ -61,7 +61,7 @@ def test_should_success(
     result = service.execute(city=city_to_search)
 
     # Assert
-    mock_wheater_client_api.fetch_weather_data.assert_called_once_with(
+    mock_weather_client_api.fetch_weather_data.assert_called_once_with(
         location=city_to_search, metric=WeatherMetricEnum.CELSIUS
     )
 
@@ -92,8 +92,8 @@ def test_should_without_music_found(
     # Arrange
     city_to_search = "test"
 
-    mock_wheater_client_api = MockedWeatherApiClient()
-    mock_wheater_client_api.fetch_weather_data = Mock(
+    mock_weather_client_api = MockedWeatherApiClient()
+    mock_weather_client_api.fetch_weather_data = Mock(
         return_value=Weather(
             temperature=temperature_returned,
             city=city_to_search,
@@ -105,7 +105,7 @@ def test_should_without_music_found(
     mock_music_client_api.fetch_music_by_genre = Mock(return_value=[])
 
     service = GetMusicByCityWeatherService(
-        weather_client_api=mock_wheater_client_api,
+        weather_client_api=mock_weather_client_api,
         music_client_api=mock_music_client_api,
     )
 
@@ -114,7 +114,7 @@ def test_should_without_music_found(
         service.execute(city=city_to_search)
 
     # Assert
-    mock_wheater_client_api.fetch_weather_data.assert_called_once_with(
+    mock_weather_client_api.fetch_weather_data.assert_called_once_with(
         location=city_to_search, metric=WeatherMetricEnum.CELSIUS
     )
 

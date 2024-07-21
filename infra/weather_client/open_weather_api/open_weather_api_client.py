@@ -22,8 +22,8 @@ class OpenWeatherApiClient(WeatherApiClient):
     def __init__(self):
 
         self.__logger = get_logger(__name__)
-        self.__base_url = os.getenv("WHEATER_API_URL")
-        self.__secret = os.getenv("WHEATER_API_SECRET")
+        self.__base_url = os.getenv("WEATHER_API_URL")
+        self.__secret = os.getenv("WEATHER_API_SECRET")
 
         self.__client = httpx.Client(base_url=self.__base_url)
 

@@ -9,8 +9,8 @@ from infra.weather_client.open_weather_api.open_weather_api_client import (
     OpenWeatherApiClient,
 )
 
-__base_url = os.getenv("WHEATER_API_URL")
-__secret = os.getenv("WHEATER_API_SECRET")
+__base_url = os.getenv("WEATHER_API_URL")
+__secret = os.getenv("WEATHER_API_SECRET")
 
 
 def test_should_success(httpx_mock: HTTPXMock):
