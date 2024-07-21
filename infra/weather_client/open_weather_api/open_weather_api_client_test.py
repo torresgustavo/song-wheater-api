@@ -3,7 +3,7 @@ import pytest
 from pytest_httpx import HTTPXMock
 
 from domain.enums.weather_unit_enum import WeatherMetricEnum
-from domain.shared.errors.not_found import NotFoundError
+from domain.shared.errors.not_found_error import NotFoundError
 from domain.shared.errors.unexpected_client_error import UnexpectedClientError
 from infra.weather_client.open_weather_api.open_weather_api_client import (
     OpenWeatherApiClient,

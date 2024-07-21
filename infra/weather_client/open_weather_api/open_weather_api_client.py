@@ -1,7 +1,7 @@
 import os
 import httpx
 
-from domain.shared.errors.not_found import NotFoundError
+from domain.shared.errors.not_found_error import NotFoundError
 from extensions.log_extension import get_logger
 
 from domain.entities.weather import Wheater
