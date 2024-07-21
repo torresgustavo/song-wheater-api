@@ -4,6 +4,7 @@ from typing import List
 
 import httpx
 
+from domain.enums.music_genre_type_enum import MusicGenreTypeEnum
 from domain.shared.errors.forbidden_error import ForbiddenError
 from domain.shared.errors.to_many_requests_error import ToManyRequestsError
 from domain.shared.errors.unauthorized_error import UnauthorizedError
@@ -28,7 +29,7 @@ class SpotifyClientApi(MusicApiClient):
 
         self.__access_token_key = "access_token"
 
-    def fetch_music_by_genre(self, genre: str) -> List[Music]:
+    def fetch_music_by_genre(self, genre: MusicGenreTypeEnum) -> List[Music]:
 
         access_token = self.__get_access_token()
 
@@ -39,7 +40,7 @@ class SpotifyClientApi(MusicApiClient):
         headers = {"Authorization": f"Bearer {access_token}"}
 
         query_params = {
-            "q": f"genre:{genre}",
+            "q": f"genre:{genre.value}",
             "type": "track",
             "limit": 10,
             "offset": 0,
