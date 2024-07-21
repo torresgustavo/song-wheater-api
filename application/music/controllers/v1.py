@@ -19,7 +19,7 @@ from infra.weather_client.open_weather_api.open_weather_api_client import (
 music_bp = Blueprint(name="Music", import_name=__name__, url_prefix="/v1/music")
 
 
-@music_bp.get("/")
+@music_bp.get("")
 def search_music_by_city_weather() -> Response:
     city = request.args.get("city", type=str)
     city = SearchMusicValidator().load({"city": city})
