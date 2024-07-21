@@ -8,7 +8,7 @@ def register_config(app: Flask):
     app_mode = os.getenv("FLASK_ENV", "development")
 
     if app_mode == "production":
-        app.config.from_object(DevelopmentConfig())
+        app.config.from_object(ProductionConfig())
     elif app_mode == "testing":
         app.config.from_object(TestingConfig())
     else:
