@@ -10,18 +10,33 @@ Busca a temperatura em graus celsius de uma cidade e seguindo as seguintes regra
 ## Tecnologias Utilizadas
 
 - Linguagem: Python 3.12
-- Framework: Flask
 - Bibliotecas:
-    - httpx
-    - marshmallow
-    - flask
+    - httpx - Auxiliar com requisições HTTP para integrações
+    - marshmallow - Auxilia na validação de objetos
+    - flask - Framework para lidar com as requisições HTTP
+    - flask-caching - Auxilia no armazenamento de informações que podem ser cacheadas para ser utilizadas entre as requisições
+- Bibliotecas de desenvolvimento
+    - pytest - Auxilia no desenvolvimento de testes unitários / integração
+    - pytest-httpx - Auxilia criando mocks das requisições de integrações realizadas
+    - pytest-dotenv - Auxilia o carregamento de váriaveis de ambiente durante os testes
+
+### Padrões utilizado
+
+Para manter o código manutenível, de facil entendimento e desenvolvimento, implementei as ideias passadas através do livro Clean Architecture, aplicando conceitos como S.O.L.I.D. e T.D.D, seguindo essas ideias estruturei o projeto da seguinte forma
+
+- application - Conterá todas a lógica de camada da aplicação, apresentação e roteamento.
+- configs - Conterá arquivos de configuração do flask
+- domain - Conterá toda a lógica de negócio, sendo ela isenta de toda dependência técnica externa, inclusive os testes unitários desse dominio.
+- extensions - Como o flask é baseado em extenção mapeei essa pasta para configurar extensões que serão utilizadas dentro da aplicação como o flask-caching
+- infra - Toda dependencia externa como os clients utilizados para integrações em outras apis
+- tests - Testes de integração
 
 ## Requisitos
 
 - Python >= 3.12
 - Poetry
-- Chave de acesso a Open Weather [Documentação](https://openweathermap.org/api)
-- Chave de acesso ao Spotify [Documentação](https://developer.spotify.com/)
+- Chave de acesso a Open Weather ([Documentação](https://openweathermap.org/api))
+- Chave de acesso ao Spotify ([Documentação](https://developer.spotify.com/))
 
 ## Váriaveis de ambientes necessárias para executar a API
 
@@ -172,7 +187,6 @@ GET /v1/music?city=São Paulo
 ```json
 HTTP/1.1 200 OK
 Content-Type: application/json
-
 {
     "weather": {
         "temperature": 25.0,
@@ -190,4 +204,15 @@ Content-Type: application/json
         }
     ]
 }
+```
 
+## Testes
+
+Para executar os testes vá para a pasta raiz do projeto e execute
+```bash
+pytest .
+```
+
+## Outras informações
+
+Não identifiquei problemas/facilidades em utilizar outra linguagem, por isso decidi utilizar python + flask pois tenho vivência com essas tecnologias.
