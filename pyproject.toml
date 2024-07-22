@@ -12,6 +12,7 @@ marshmallow = "^3.21.3"
 flask = "^3.0.3"
 pytest-httpx = "^0.30.0"
 flask-caching = "^2.3.0"
+gunicorn = "^22.0.0"
 
 [tool.poetry.group.dev.dependencies]
 pytest = "^8.3.1"
