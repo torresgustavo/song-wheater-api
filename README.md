@@ -92,6 +92,13 @@ poetry run flask run --host=0.0.0.0
 
 ## Acessando a aplicação
 
+Link da aplicação hospedada: https://song-wheater-api-production.up.railway.app
+
+Motivos de ter escolhido a railway como minha provedora cloud:
+Escolhi a railway.app pois o plano free tier atendia muito bem as necessidades do proejeto e a integração de CI/CD se integra muito bem com o github, se a caso eu precisar de um rollback é fácil de fazer, ou até mesmo um aumento das "tasks" em execução.
+
+Para publicar a API, foi necessário adaptações no Dockerfile e a utilização de um servidor WSGI para que a task na cloud conseguisse realizar a conexão com a api. Também foi necessário vincular o projeto no github com a plataforma da railway.app para que cada commit feito dispare o processo de build + deploy do container da aplicação atualizada.
+
 ### Endpoints
 
 Endpoint /v1/music
