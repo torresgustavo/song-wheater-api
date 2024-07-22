@@ -3,9 +3,6 @@ from extensions.cache_extension import register_cache
 from extensions.flask_config_extension import register_config
 from extensions.routes_extension import register_blueprint
 
-# from extensions.injector_extension import register_dependency_injection
-# from extensions.exception_extension import register_exception_handler
-
 
 def create_app() -> Flask:
     app = Flask(__name__)
@@ -14,6 +11,4 @@ def create_app() -> Flask:
     register_blueprint(app)
     register_cache(app)
 
-    # register_exception_handler(app)
-    # register_dependency_injection(app)
     return app
