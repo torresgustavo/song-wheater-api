@@ -38,11 +38,16 @@ Busca a temperatura em graus celsius de uma cidade e seguindo as seguintes regra
 
 1. Vá para o diretório root do projeto
 2. Gere a imagem da aplicação 
+
 ```bash
 docker build . -t song-weather-api
+```
+
 3. Execute o container
+
 ```bash
 docker run -p 5000:5000 --name song-weather-api --env-file .env song-weather-api
+```
 
 Obs: É necessário que você tenha informado as váriveis de ambiente, gerando o arquivo .env ou passando manualmente as váriaveis ao executar o container.
 
@@ -52,14 +57,22 @@ Obs: É necessário que você tenha informado as váriveis de ambiente, gerando 
 1. Clone o projeto (https://github.com/torresgustavo/song-wheater-api.git)
 2. Abra o terminal ou prompt de comando.
 3. Execute o seguinte comando para instalar o Poetry com pip (caso não tenha pip siga [este](https://pip.pypa.io/en/stable/installation/) passo a passo):
+
 ```bash
 pip install poetry
+```
+
 4. Instale as dependências do projeto com
+
 ```bash
 poetry install
+```
+
 5. Execute a aplicação:
 ```bash
 poetry run flask run --host=0.0.0.0
+```
+
 6. A aplicação estará disponível na porta 5000
 
 ## Acessando a aplicação
