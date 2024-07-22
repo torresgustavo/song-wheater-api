@@ -1,6 +1,6 @@
 from flask import Flask
-from application.weather import wheather_bp
+from application.music.controllers.v1 import music_bp
 
 
 def register_blueprint(app: Flask):
-    app.register_blueprint(wheather_bp)
+    app.register_blueprint(music_bp)
