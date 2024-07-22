@@ -20,4 +20,4 @@ COPY . /app
 EXPOSE 5000
 
 # Comando para iniciar a aplicação Flask
-CMD ["poetry", "run", "gunicorn", "-w", "1", "-b", "0.0.0.0:5000", "app:create_app()"]
+CMD ["poetry", "run", "gunicorn", "-w", "1", "app:create_app()"]
